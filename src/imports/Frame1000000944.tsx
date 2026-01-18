@@ -1,51 +1,66 @@
-import imgShape from "../assets/11dbcb982f9ba115c7d5cc790cc48a457815fb67.png";
+import { useState } from "react";
 
-function TextHeading() {
-  return (
-    <div className="content-stretch flex items-start relative shrink-0 w-full" data-name="Text Heading">
-      <p className="css-4hzbpn flex-[1_0_0] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[1.2] min-h-px min-w-px not-italic relative text-[#1e1e1e] text-[24px] tracking-[-0.48px]">“I didn’t expect to like it this much.”</p>
-    </div>
-  );
-}
+const testimonials = [
+  {
+    quote: "It didn’t try to sell me anything or push me somewhere. Just information and stories, at the right moment",
+    name: "Sam",
+    country: "Canada",
+  },
+  {
+    quote: "My kids actually paid attention. I was surprised. They listened to the audio and asked questions after. It wasn’t childish, but it wasn’t boring either.",
+    name: "Rez",
+    country: "Pakistan",
+  },
+  {
+    quote: "Pour le prix, ça vaut le coup.",
+    name: "Claire",
+    country: "France",
+  },
+  {
+    quote: "I didn’t expect to like it this much. We bought the pass kind of last minute. I thought it would be basic, but it wasn’t.",
+    name: "Claire",
+    country: "France",
+  },
+];
 
-function Avatar() {
-  return (
-    <div className="overflow-clip relative rounded-[9999px] shrink-0 size-[40px]" data-name="Avatar">
-      <div className="absolute left-1/2 size-[40px] top-1/2 translate-x-[-50%] translate-y-[-50%]" data-name="Shape">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgShape} />
-      </div>
-    </div>
-  );
-}
+export default function TravelerTestimonial() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { quote, name, country } = testimonials[activeIndex];
 
-function Frame1() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[12px] items-start leading-[0] min-h-px min-w-px not-italic relative text-[16px]">
-      <div className="css-g0mm18 flex flex-col font-['Inter:Semi_Bold',sans-serif] font-semibold justify-center relative shrink-0 text-[#bf5d14]">
-        <p className="css-ew64yg leading-[1.4]">Claire, France</p>
-      </div>
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center min-w-full relative shrink-0 text-[#333] w-[min-content]">
-        <p className="css-4hzbpn leading-[1.4]">We bought the pass kind of last minute. I thought it would be basic, but it wasn’t. The stories made things make sense</p>
-      </div>
-    </div>
-  );
-}
+    <>
+    <div className="bg-[#faf3ea] rounded-[8px] p-6 relative w-full max-w-xl mx-auto">
+      {/* Bordure fine */}
+      <div className="absolute inset-0 border border-[#a4a987] rounded-[8px] pointer-events-none" />
 
-function Frame2() {
-  return (
-    <div className="content-stretch flex gap-[12px] items-start relative shrink-0 w-full">
-      <Avatar />
-      <Frame1 />
-    </div>
-  );
-}
+      {/* Citation */}
+      <p className="text-[20px] font-semibold text-[#1e1e1e] leading-snug tracking-tight mb-4 font-['Inter']">
+        “{quote}”
+      </p>
 
-export default function Frame() {
-  return (
-    <div className="bg-[#faf3ea] content-stretch flex flex-col gap-[24px] items-start p-[24px] relative rounded-[8px] size-full">
-      <div aria-hidden="true" className="absolute border border-[#a4a987] border-solid inset-0 pointer-events-none rounded-[8px]" />
-      <TextHeading />
-      <Frame2 />
+      {/* Nom + pays */}
+      <p className="text-[#bf5d14] text-[16px] font-semibold font-['Inter']">
+        {name}, {country}
+      </p>
+
+      {/* Navigation dots */}
+    
     </div>
+ <div className="flex gap-2 mt-6 justify-center items-center leading-none">
+  {testimonials.map((_, i) => (
+    <span
+      key={i}
+      onClick={() => setActiveIndex(i)}
+      className={`block cursor-pointer transition-all duration-300 ${
+        i === activeIndex
+          ? "bg-[#bf5d14] w-[20px] h-[6px] rounded-[3px]"
+          : "bg-[#ddd] w-[6px] h-[6px] rounded-full"
+      }`}
+    />
+  ))}
+</div>
+
+
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import imgScreenshot20260107At1644131 from "assets/49cd82405d17f8a8779e2d7f00cf7e7ee6f142e4.png";
+import imgScreenshot20260107At1644131 from "../assets/49cd82405d17f8a8779e2d7f00cf7e7ee6f142e4.png";
 
 export default function Frame() {
   return (
